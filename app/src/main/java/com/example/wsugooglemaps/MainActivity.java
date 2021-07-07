@@ -186,6 +186,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         //Builder Pattern
         LatLng artBuild = new LatLng(42.35909664149697, -83.07030776409874);
         mGoogleMap.addMarker(new MarkerOptions().position(artBuild).title("Art Building"));
+        LatLng gullenMall = new LatLng(42.35751188448024, -83.0697869063558);
+        mGoogleMap.addMarker(new MarkerOptons().position(gullenMall).title("Gullen Mall"));
+        LatLng Uglibrary = new LatLng(42.35646570032858, -83.07026244456746);
+        mGoogleMap.addMarker(new MarkerOptions().positon(Uglibrary).title("Undergraduate Library"));
+        
         
         
 
