@@ -10,21 +10,32 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class LoginActivity extends AppCompatActivity {
+    private static LoginActivity loginActivityInstance;
     private EditText Username;
     private EditText Pass;
     private TextView Info;
     private Button Logon;
     private int count = 5;
 
+    private LoginActivity() {
+    }
+
+    public static LoginActivity getInstance() {
+        if (loginActivityInstance == null) {
+            loginActivityInstance = new LoginActivity();
+        }
+        return loginActivityInstance;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
 
-        /*/   // Username = (EditText)findViewById(R.id.etUsername);
-        // Pass = (EditText)findViewById(R.id.etPass);
-       //  Info = (TextView)findViewById(R.id.tvInfo);
-        // Logon = (Button)findViewById(R.id.btnLogon);*/
+        Username = (EditText)findViewById(R.id.Username);
+        Pass = (EditText)findViewById(R.id.Pass);
+        Info = (TextView)findViewById(R.id.Info);
+        Logon = (Button)findViewById(R.id.Logon);
 
         Logon.setOnClickListener(new View.OnClickListener() {
             @Override
