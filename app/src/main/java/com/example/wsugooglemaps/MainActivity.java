@@ -88,6 +88,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
        // searchIcon.setOnClickListener(this::geoLocate);
 
     }
+    
+    //Search bar
 
     /*
     private void geoLocate(View view) {
