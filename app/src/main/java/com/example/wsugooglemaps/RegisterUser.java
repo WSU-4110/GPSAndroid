@@ -19,7 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
 import org.jetbrains.annotations.NotNull;
-
+// create RegisterUser class
 public class RegisterUser extends AppCompatActivity implements View.OnClickListener {
 
     // Create variables for layout items
@@ -31,6 +31,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
     // Connected Firebase and declared instance of Firebase Auth
     private FirebaseAuth mAuth;
 
+    // Create instance of the register user activity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +54,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    // When the login or register options are clicked function
     @Override
     public void onClick(View v) {
         // Create switch cases for Login and Register activity
@@ -69,14 +71,13 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
     }
     // create registerUser method
     private void registerUser() {
-        // Convert string in text boxes and into the corresponding variable
+        // Convert user input to string into the corresponding variable
         String email = editTextEmailAddress.getText().toString().trim();
         String Password = editTextPassword.getText().toString().trim();
         String Name = editTextName.getText().toString().trim();
         String Age = editTextAge.getText().toString().trim();
 
-        // Validation, if inputs are empty
-
+        // Validation if statements for if inputs are empty
         if (Name.isEmpty()) {
             editTextName.setError("Full Name is Required!");
             editTextName.requestFocus();
@@ -136,13 +137,14 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
                                 public void onComplete(@NonNull @NotNull Task<Void> task) {
 
                                     // Check if user registration is successful or not
-                                    // Send messaging letting user know
+                                    // Output message letting user know
                                     if(task.isSuccessful()) {
                                         Toast.makeText(RegisterUser.this, "User Registration Successful!", Toast.LENGTH_LONG).show();
 
                                         // Redirect to login layout
                                     }
                                     else{
+                                        // Output message if user registration failed
                                         Toast.makeText(RegisterUser.this, "User Registration Failed. Please Try Again.", Toast.LENGTH_LONG).show();
                                     }
 
@@ -150,6 +152,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
                             });
 
                         } else{
+                            // Output if the registration fails
                             Toast.makeText(RegisterUser.this, "User Registration Failed. Please Try Again.", Toast.LENGTH_LONG).show();
 
                         }

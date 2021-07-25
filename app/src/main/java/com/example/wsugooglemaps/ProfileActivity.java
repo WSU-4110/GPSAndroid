@@ -12,6 +12,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     // Declare map button variable
     private Button map;
 
+    // Create the instance of the profile activity when it is launched
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +26,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View v) {
         // When button is clicked go to MainActivity which is the Map itself
+        // use a switch case to launch the main activity if the button is clicked
         switch (v.getId()){
             case R.id.map:
                 startActivity(new Intent(this, MainActivity.class));

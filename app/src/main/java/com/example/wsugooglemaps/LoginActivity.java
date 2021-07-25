@@ -34,7 +34,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
 
-        // Initialize variables
+        // Initialize all the variables
         register = (TextView) findViewById(R.id.register);
         register.setOnClickListener(this);
 
@@ -50,12 +50,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     // Create onClick method to start layout when clicked in APP
     @Override
     public void onClick(View v) {
+        // switch case for when register is clicked on or when login is clicked on
         switch (v.getId()){
             case R.id.register:
+                // start register user activity if register is clicked
                 startActivity(new Intent(this, RegisterUser.class));
                 break;
 
             case R.id.login:
+                // call user login method if login is clicked
                 userLogin();
                 break;
 
@@ -64,16 +67,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
      // method for User Login
     private void userLogin() {
         // Get User credentials and convert it string
+        // Use trim function to eliminate leading and trailing spaces
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
 
         // Check if email field is empty
+        // Output that an email is required if it is
         if (email.isEmpty()){
             editTextEmail.setError("Email is Required!");
             editTextEmail.requestFocus();
             return;
          }
         // Check if email is valid
+        // If email is invalid output text saying it is required
         if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
             editTextEmail.setError("Please enter a valid email address!");
             editTextPassword.requestFocus();
@@ -81,6 +87,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
 
         // Check if password field is empty
+        // Output text that it is required if it is empty
         if(password.isEmpty()){
             editTextPassword.setError("Password is Required!");
             editTextPassword.requestFocus();
@@ -93,16 +100,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             editTextPassword.requestFocus();
             return;
         }
-
+        // call mAuth object to run sign in task
         mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull @NotNull Task<AuthResult> task) {
-
+                // If statement ot check if task was successful
                 if(task.isSuccessful()) {
                     // Redirect to user profile
                     startActivity(new Intent(LoginActivity.this, ProfileActivity.class));
                 }
                 else{
+                    // Else output text that Login failed
                     Toast.makeText(LoginActivity.this, "Login Failed.", Toast.LENGTH_LONG).show();
 
                 }
