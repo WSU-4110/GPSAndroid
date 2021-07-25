@@ -31,6 +31,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.map:
                 startActivity(new Intent(this, MainActivity.class));
                 break;
+                
         }
 
     }
