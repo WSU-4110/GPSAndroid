@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "878468347611",
+    "project_id": "gps-android-ff91d",
+    "storage_bucket": "gps-android-ff91d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:878468347611:android:1c8a3aa435a112b10efefe",
+        "android_client_info": {
+          "package_name": "com.example.wsugooglemaps"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "878468347611-mntegp3hn3iole8jhpm2j30hkj2kjc1o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAE2K5r9tcHPovr2KOjmpZ0ILV3gXZxzhM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "878468347611-mntegp3hn3iole8jhpm2j30hkj2kjc1o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
