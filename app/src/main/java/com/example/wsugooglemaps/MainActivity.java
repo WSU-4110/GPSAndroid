@@ -18,8 +18,11 @@ import android.os.LocaleList;
 import android.os.PersistableBundle;
 import android.provider.Settings;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -44,11 +47,12 @@ import com.karumi.dexter.listener.single.PermissionListener;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 //please write code comments to make it readable 
-public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, AdapterView.OnItemSelectedListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     boolean isPermissionGrnted;
     GoogleMap mGoogleMap;
@@ -85,7 +89,59 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
 
+        Spinner popularLocations = findViewById(R.id.spinner);
+        popularLocations.setOnItemSelectedListener(this);
+
+        List<String> listOfLocations = new ArrayList<String>();
+        listOfLocations.add("Wayne State University Department of Physics and Astronomy");
+        listOfLocations.add("General Lectures");
+        listOfLocations.add("Prentis Building");
+        listOfLocations.add("DeRoy Auditorium");
+        listOfLocations.add("Science Hall");
+        listOfLocations.add("Life Science Building");
+
+        ArrayAdapter<String> popularLocationsAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, listOfLocations);
+        popularLocations.setAdapter(popularLocationsAdapter);
        // searchIcon.setOnClickListener(this::geoLocate);
+
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view,
+                               int position, long id) {
+        switch(parent.getId())
+        {
+            case R.id.spinner:
+                if(position == 0)
+                {
+                    gotoLocation(42.35400386604689, -83.06949827390679);
+                }
+                if(position == 1)
+                {
+                    gotoLocation(42.35511182951506, -83.07211836611843);
+                }
+                if(position == 2)
+                {
+                    gotoLocation(42.35801421215564, -83.06823415994502);
+                }
+                if(position == 3)
+                {
+                    gotoLocation(42.35770959568507, -83.06863408283621);
+                }
+                if(position == 4)
+                {
+                    gotoLocation(42.35633548159699, -83.06742468849461);
+                }
+                if(position == 5)
+                {
+                    gotoLocation(42.355811104191346, -83.06861066966165);
+                }
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
 
     }
 
