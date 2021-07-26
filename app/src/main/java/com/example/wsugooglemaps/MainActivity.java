@@ -29,6 +29,7 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -49,18 +50,20 @@ import java.util.Locale;
 
 //please write code comments to make it readable 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
-
+  //  OnInfoWindowClickListener
     boolean isPermissionGrnted;
     GoogleMap mGoogleMap;
     FloatingActionButton fab;
     private FusedLocationProviderClient mLocationClient;
     private Object initMap;
-    private int GPS_REQUEST_CODE = 9001;
+    private final int GPS_REQUEST_CODE = 9001;
 
-    //EditText locSearch;
-    //ImageView searchIcon;
 
-    @Override
+    /*
+     EditText locSearch;
+     ImageView searchIcon;
+    */
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -256,5 +259,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 Toast.makeText(this, "GPS is not enable", Toast.LENGTH_SHORT).show();
             }
         }
+
     }
 }
