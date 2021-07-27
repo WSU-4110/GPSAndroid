@@ -83,13 +83,14 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
             editTextName.requestFocus();
             return;
         }
-
+        //age is required to be inputted
         if (Age.isEmpty()){
             editTextAge.setError("Age is Required!");
             editTextAge.requestFocus();
             return;
 
         }
+        //Email address is required
         if (email.isEmpty()){
             editTextEmailAddress.setError("Email is Required!");
             editTextEmailAddress.requestFocus();
@@ -102,7 +103,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
             editTextEmailAddress.requestFocus();
             return;
         }
-
+        /* password required and will be saved and authenticated */
         if(Password.isEmpty()){
             editTextPassword.setError("Password is Required!");
             editTextPassword.requestFocus();
