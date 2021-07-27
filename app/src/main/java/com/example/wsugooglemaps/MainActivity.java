@@ -61,8 +61,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private Object initMap;
     private int GPS_REQUEST_CODE = 9001;
 
-    //EditText locSearch;
-    //ImageView searchIcon;
+    EditText locSearch;
+    ImageView searchIcon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,8 +71,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         fab = findViewById(R.id.fab);
 
-        //locSearch = findViewById(R.id.et_search);
-        //searchIcon = findViewById(R.id.search_icon);
+        locSearch = findViewById(R.id.et_search);
+        searchIcon = findViewById(R.id.search_icon);
 
         // what is the purpose of this function?
         //to check/ ask for user permission to get their current location
@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         ArrayAdapter<String> popularLocationsAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, listOfLocations);
         popularLocations.setAdapter(popularLocationsAdapter);
-       // searchIcon.setOnClickListener(this::geoLocate);
+       searchIcon.setOnClickListener(this::geoLocate);
 
     }
 
@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     }
 
-    /*
+
     private void geoLocate(View view) {
         String locationName = locSearch.getText().toString();
 
@@ -168,7 +168,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         }
     }
-     */
+
 
 
 
