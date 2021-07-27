@@ -170,6 +170,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
      */
 
+
+
     private  void  initMap() {
         if (isPermissionGrnted){
             if(isGPSenable()) {
@@ -220,6 +222,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(LatLng, 18);
         mGoogleMap.moveCamera(cameraUpdate);
         mGoogleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+
     }
 
     private void checkMyPermission() {
