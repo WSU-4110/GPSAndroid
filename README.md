@@ -1,5 +1,5 @@
 # GPSAndroid
-## Desicription
+## Description
 "name" is an Android Application looking to help new students of Wayne State University find their way around campus. Often times going to Wayne State University for the first time can be intimidating and one can often find themslves lost on campus. Using the Google maps API, the app shows the campus and allows users to easily locate certain buildings around it.
 <p align="center">
   <img src="https://user-images.githubusercontent.com/84817034/127062328-bd1498cc-499f-4834-b2e5-9db51e80b6b2.png">
