@@ -17,12 +17,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.ktx.Firebase;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
 import org.jetbrains.annotations.NotNull;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +35,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private EditText editTextEmail, editTextPassword;
     private Button login;
     private FirebaseAuth mAuth;
+    private TextView forgotPassword;
 
     // create Instance State for launching activity and utilizing the links and buttons
     @Override
@@ -49,6 +52,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         editTextEmail = (EditText) findViewById(R.id.Email);
         editTextPassword = (EditText) findViewById(R.id.Password);
+
+        forgotPassword = (TextView) findViewById(R.id.forgotPassword);
+        forgotPassword.setOnClickListener(this);
 
         mAuth = FirebaseAuth.getInstance();
     }
@@ -69,6 +75,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 // call user login method if login is clicked
                 userLogin();
                 break;
+
+                case R.id.forgotPassword:
+                    startActivity(new Intent(this, ForgotPassword.class));
+                    break;
+
+
 
         }
     }
@@ -109,19 +121,24 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             return;
         }
         // call mAuth object to run sign in task
-        mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull @NotNull Task<AuthResult> task) {
-                // If statement ot check if task was successful
-                if(task.isSuccessful()) {
+        mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(task -> {
+            // If statement ot check if task was successful
+            if(task.isSuccessful()) {
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                if (user.isEmailVerified()) {
+
                     // Redirect to user profile
                     startActivity(new Intent(LoginActivity.this, ProfileActivity.class));
-                }
-                else{
-                    // Else output text that Login failed
-                    Toast.makeText(LoginActivity.this, "Login Failed.", Toast.LENGTH_LONG).show();
-
+                } else {
+                    user.sendEmailVerification();
+                    Toast.makeText(LoginActivity.this, "Please check your email for account verification.", Toast.LENGTH_LONG).show();
                 }
             }
+                    else{
+                    // Else output text that Login failed
+                    Toast.makeText(LoginActivity.this, "Login Failed.", Toast.LENGTH_LONG).show();
+                    }
         });
-} }
+    };
+    }

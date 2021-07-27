@@ -8,9 +8,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
     // Declare map button variable
     private Button map;
+
+    // declare the logout button variable
+    private Button logout;
 
     // Create the instance of the profile activity when it is launched
     @Override
@@ -21,6 +26,21 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         // Initialize the map variable
         map = (Button) findViewById(R.id.map);
         map.setOnClickListener(this);
+
+        // Initialize the logout button variable
+        logout = (Button) findViewById(R.id.logout);
+
+        // When Logout button is clicked
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // call the function to signout
+                FirebaseAuth.getInstance().signOut();
+                // send the user to the Login activity
+                // back to the login screen
+                startActivity(new Intent(ProfileActivity.this, LoginActivity.class));
+            }
+        });
     }
 
     @Override
@@ -31,7 +51,6 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.map:
                 startActivity(new Intent(this, MainActivity.class));
                 break;
-                
         }
 
     }
