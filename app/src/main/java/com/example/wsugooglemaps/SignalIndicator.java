@@ -1,6 +1,6 @@
 package com.example.wsugooglemaps;
 
-public class Proximity {
+public class SignalIndicator {
     SensorEventListener proximitySensorEventListener = new SensorEventListener() {
         @Override
         public void onAccuracyChanged(Sensor sensor, int accuracy) {
