@@ -103,7 +103,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         ArrayAdapter<String> popularLocationsAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, listOfLocations);
         popularLocations.setAdapter(popularLocationsAdapter);
-       searchIcon.setOnClickListener(this::geoLocate);
+
+        searchIcon.setOnClickListener(this::geoLocate);
 
     }
 
@@ -207,11 +208,16 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     @SuppressLint("MissingPermission")
-    private void  getCurrentLoc() {
+    private void  gotoCurrentLoc() {
         mLocationClient.getLastLocation().addOnCompleteListener(task -> {
             if (task.isSuccessful()){
                 Location location = task.getResult();
-                gotoLocation(location.getLatitude(), location.getLongitude());
+                 
+                 LatLng LatLng = new LatLng(location.getLatitude(), location.getLongitude());
+
+                CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(LatLng, 18);
+                mGoogleMap.moveCamera(cameraUpdate);
+                mGoogleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
             }
         });
     }
@@ -254,7 +260,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mGoogleMap = googleMap;
-        mGoogleMap.setMyLocationEnabled(true);
+        //mGoogleMap.setMyLocationEnabled(true);
 
         //Location marker for Wayne State University
         LatLng wsu = new LatLng(42.35740456607535, -83.06532964687997);
